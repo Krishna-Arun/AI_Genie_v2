@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C41F5C14-772D-4B56-BAF3-0FE8BF6807D5}</ProjectGuid>
+    <RootNamespace>atiopencl</RootNamespace>
+    <ProjectName>example_app_atiopencl</ProjectName>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;../api;../lib;../samples/image_libs;../samples/jpeglib;../samples/glut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>ATI_OS_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WholeProgramOptimization Condition="'$(Configuration)'=='Release'">true</WholeProgramOptimization>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opencl.lib;cfgmgr32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy ..\samples\openclapp\*.cl "$(OUTDIR)"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\samples\openclapp\openclapp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\samples\openclapp\openclapp_kernels.cl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\samples\openclapp\openclapp.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libboincapi.vcxproj">
+      <Project>{07bda8f7-4aaf-4a3b-b96e-ea72a143c5ae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboincopencl.vcxproj">
+      <Project>{c0a2deee-2ec5-4f67-8048-53264b6bd14d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboinc.vcxproj">
+      <Project>{e8f6bd7e-461a-4733-b7d8-37b09a099ed8}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Import Project="boinc_signing.targets" />
+</Project>

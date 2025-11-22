@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectName>example_app</ProjectName>
+    <ProjectGuid>{CCB9A37C-7AD8-4FC1-ABEC-1A6ED2268F83}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;../api;../lib;../samples/image_libs;../samples/jpeglib;../samples/glut;../coprocs/OpenCL/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">libcmtd.lib;libcpmtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Release'">libcmt.lib;libcpmt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Platform)'=='x64'">opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\api\graphics2_util.cpp">
+      <ExcludedFromBuild Condition="'$(Platform)'=='ARM64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\samples\example_app\uc2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\samples\example_app\uc2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libboincapi.vcxproj">
+      <Project>{07bda8f7-4aaf-4a3b-b96e-ea72a143c5ae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboinc.vcxproj">
+      <Project>{e8f6bd7e-461a-4733-b7d8-37b09a099ed8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="uc2_dll.vcxproj">
+      <Project>{b275c525-5ef4-40ba-a70a-4e01a76a0cdd}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Import Project="boinc_signing.targets" />
+</Project>

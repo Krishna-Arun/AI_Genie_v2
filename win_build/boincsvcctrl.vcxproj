@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9FC47E90-4E0D-4383-B446-A84314B00764}</ProjectGuid>
+    <RootNamespace>boincsvcctrl</RootNamespace>
+    <ProjectName>boincsvcctrl</ProjectName>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <Import Project="pch.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../lib;..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\clientctrl\boincsvcctrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\clientctrl\boincsvcctrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\clientctrl\boincsvcctrl.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="libboinc.vcxproj">
+      <Project>{e8f6bd7e-461a-4733-b7d8-37b09a099ed8}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Import Project="boinc_signing.targets" />
+</Project>

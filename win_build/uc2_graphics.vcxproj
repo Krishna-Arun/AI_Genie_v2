@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectName>example_app_graphics</ProjectName>
+    <ProjectGuid>{3CF31288-A44D-4C78-A3AA-B05B6E32DF11}</ProjectGuid>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;../api;../lib;../samples/image_libs;../samples/jpeglib;../samples/glut;../coprocs/OpenCL/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;FTGL_LIBRARY_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;psapi.lib;brotlicommon.lib;brotlidec.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">libcmtd.lib;libcpmtd.lib;freetyped.lib;ftgld.lib;libpng16d.lib;bz2d.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Release'">libcmt.lib;libcpmt.lib;freetype.lib;ftgl.lib;libpng16.lib;bz2.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>GDI32.DLL;OPENGL32.DLL;GLU32.DLL;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\api\ttfont.cpp" />
+    <ClCompile Include="..\samples\example_app\uc2_graphics.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\api\ttfont.h" />
+    <ClInclude Include="..\samples\example_app\uc2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glut.vcxproj">
+      <Project>{c4165626-f68f-4f66-a126-3b82ddbb7480}</Project>
+    </ProjectReference>
+    <ProjectReference Include="image_libs.vcxproj">
+      <Project>{d3d21f11-a7e7-4ea2-8518-e24695133bff}</Project>
+    </ProjectReference>
+    <ProjectReference Include="jpeglib.vcxproj">
+      <Project>{5f065eac-b881-4e9a-9e34-7a21d7a01d98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboincopencl.vcxproj">
+      <Project>{c0a2deee-2ec5-4f67-8048-53264b6bd14d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboinc.vcxproj">
+      <Project>{e8f6bd7e-461a-4733-b7d8-37b09a099ed8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libgraphics2.vcxproj">
+      <Project>{814ebfd3-3ce6-4933-a580-c1fe3147acb4}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Import Project="boinc_signing.targets" />
+</Project>

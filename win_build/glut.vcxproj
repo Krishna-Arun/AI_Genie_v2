@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C4165626-F68F-4F66-A126-3B82DDBB7480}</ProjectGuid>
+    <RootNamespace>glut</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>glut</ProjectName>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <PreprocessorDefinitions>_LIB;_CONSOLE;HAVE_STD_MAX;HAVE_STD_MIN;HAVE_STD_TRANSFORM;CLIENT;BOINC_APP_GRAPHICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\samples\glut\glut_roman.c" />
+    <ClCompile Include="..\samples\glut\glut_stroke.c" />
+    <ClCompile Include="..\samples\glut\glut_swidth.c" />
+    <ClCompile Include="..\samples\glut\win32_glx.c" />
+    <ClCompile Include="..\samples\glut\win32_util.c" />
+    <ClCompile Include="..\samples\glut\win32_x11.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\samples\glut\glut.h" />
+    <ClInclude Include="..\samples\glut\glutbitmap.h" />
+    <ClInclude Include="..\samples\glut\glutint.h" />
+    <ClInclude Include="..\samples\glut\glutstroke.h" />
+    <ClInclude Include="..\samples\glut\glutwin32.h" />
+    <ClInclude Include="..\samples\glut\stroke.h" />
+    <ClInclude Include="..\samples\glut\win32_glx.h" />
+    <ClInclude Include="..\samples\glut\win32_x11.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

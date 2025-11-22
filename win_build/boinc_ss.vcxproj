@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C3163ACA-C2E6-49D2-AA21-B8B953331EF7}</ProjectGuid>
+    <RootNamespace>boinc_ss</RootNamespace>
+    <ProjectName>boinc_ss</ProjectName>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <Import Project="pch.props" />
+  <PropertyGroup>
+    <TargetName>boincscr</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../win_build;.;../api;../lib;../samples/image_libs;../samples/jpeglib;../samples/glut;../coprocs/OpenCL/include;$(VcpkgInstalledDir)/include/freetype;$(WindowsSdkDir)/Include/shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CONSOLE;FTGL_LIBRARY_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;psapi.lib;wsock32.lib;brotlicommon.lib;brotlidec.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Debug'">libcmtd.lib;libcpmtd.lib;freetyped.lib;ftgld.lib;libpng16d.lib;zlibd.lib;bz2d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies Condition="'$(Configuration)'=='Release'">libcmt.lib;libcpmt.lib;freetype.lib;ftgl.lib;libpng16.lib;zlib.lib;bz2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>GDI32.DLL;OPENGL32.DLL;GLU32.DLL;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\cc_config.cpp" />
+    <ClCompile Include="..\lib\gui_rpc_client.cpp" />
+    <ClCompile Include="..\lib\gui_rpc_client_ops.cpp" />
+    <ClCompile Include="..\clientscr\ss_app.cpp" />
+    <ClCompile Include="..\api\ttfont.cpp" />
+    <ClCompile Include="..\lib\keyword.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\cc_config.h" />
+    <ClInclude Include="..\clientscr\boinc_ss_opengl.h" />
+    <ClInclude Include="..\clientscr\ss_app.h" />
+    <ClInclude Include="..\api\ttfont.h" />
+    <ClInclude Include="..\lib\keyword.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\clientscr\boinc_ss_opengl.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glut.vcxproj">
+      <Project>{c4165626-f68f-4f66-a126-3b82ddbb7480}</Project>
+    </ProjectReference>
+    <ProjectReference Include="image_libs.vcxproj">
+      <Project>{d3d21f11-a7e7-4ea2-8518-e24695133bff}</Project>
+    </ProjectReference>
+    <ProjectReference Include="jpeglib.vcxproj">
+      <Project>{5f065eac-b881-4e9a-9e34-7a21d7a01d98}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libboinc.vcxproj">
+      <Project>{e8f6bd7e-461a-4733-b7d8-37b09a099ed8}</Project>
+    </ProjectReference>
+    <ProjectReference Include="libgraphics2.vcxproj">
+      <Project>{814ebfd3-3ce6-4933-a580-c1fe3147acb4}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <Import Project="boinc_signing.targets" />
+</Project>

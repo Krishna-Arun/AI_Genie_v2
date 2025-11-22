@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{814EBFD3-3CE6-4933-A580-C1FE3147ACB4}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectName>libgraphics2</ProjectName>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="boinc.props" />
+  <Import Project="pch.props" />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;../;../api;../lib;../samples/image_libs;../samples/jpeglib;../samples/glut;../coprocs/OpenCL/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_LIB;_CONSOLE;CLIENT;BOINC_APP_GRAPHICS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\api\boinc_api.cpp" />
+    <ClCompile Include="..\api\graphics2.cpp" />
+    <ClCompile Include="..\api\graphics2_util.cpp" />
+    <ClCompile Include="..\api\graphics2_win.cpp" />
+    <ClCompile Include="..\api\gutil.cpp" />
+    <ClCompile Include="..\api\gutil_text.cpp" />
+    <ClCompile Include="..\api\reduce_lib.cpp" />
+    <ClCompile Include="..\api\reduce_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\api\boinc_api.h" />
+    <ClInclude Include="..\api\boinc_gl.h" />
+    <ClInclude Include="..\api\graphics2.h" />
+    <ClInclude Include="..\api\graphics_api.h" />
+    <ClInclude Include="..\api\graphics_data.h" />
+    <ClInclude Include="..\api\graphics_impl.h" />
+    <ClInclude Include="..\api\gutil.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

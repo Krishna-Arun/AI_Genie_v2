@@ -1,0 +1,52 @@
+codecov:
+  require_ci_to_pass: true
+  notify:
+    after_n_builds: 4
+    wait_for_ci: true
+
+coverage:
+  status:
+    project: off
+    patch:
+      default:
+        threshold: 0.01
+
+comment:
+  layout: "diff, files"
+  behavior: default
+  require_changes: true    # if true: only post the comment if coverage changes
+  require_base: false      # [true :: must have a base report to post]
+  require_head: true       # [true :: must have a head report to post]
+  branches:
+    - master
+  after_n_builds: 4
+
+github_checks:
+    annotations: false
+
+flags:
+  # filter the folder(s) you wish to measure by that flag
+  api:
+    paths:
+      - api/
+  library:
+    paths:
+      - lib/
+  client:
+    paths:
+      - client/
+      - clientgui/
+  server:
+    paths:
+      - sched/
+      - db/
+      - tools/
+  android:
+    paths:
+      - android/BOINC/app/src/main/java/edu/berkeley/boinc
+
+# don't gather statistics for test and external libraries
+ignore:
+  - tests/.*
+  - zip/.*
+  - 3rdParty/.*
