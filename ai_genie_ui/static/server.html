@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie — Server</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>Server Site</h1>
+          <p>Keep this tab pinned for server toggles and logs.</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a class="active" href="/server">Server</a>
+        <a href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card server-panel">
+        <div class="panel-heading">
+          <h2>Server Control</h2>
+          <p>Toggle the server switch and follow its live log stream.</p>
+        </div>
+        <div class="panel-actions">
+          <button id="server-toggle" class="pill">Activate</button>
+          <a href="/logs/server" target="_blank" class="log-link">Open server log feed ↗</a>
+        </div>
+        <pre id="server-log-box">Server log will appear here as soon as events arrive.</pre>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Server site &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
+

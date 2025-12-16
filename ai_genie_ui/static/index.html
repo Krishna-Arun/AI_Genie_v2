@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>AI Genie</h1>
+          <p>Choose a site: Server controls or Client workspace. Pin each in Chrome as separate tabs.</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/server">Server</a>
+        <a href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Server Site</h2>
+          <p>Start/stop the server switch and watch server-side logs in a dedicated page.</p>
+        </div>
+        <div class="panel-actions">
+          <a class="primary-link" href="/server">Open Server Site</a>
+          <a href="/logs/server" target="_blank" class="log-link">Open server log feed ↗</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Client Site</h2>
+          <p>Submit Hello World tests (Python/Docker) and watch client-side logs in a dedicated page.</p>
+        </div>
+        <div class="panel-actions">
+          <a class="primary-link" href="/client">Open Client Site</a>
+          <a href="/logs/client" target="_blank" class="log-link">Open client log feed ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Local sites: <a href="/server">/server</a> and <a href="/client">/client</a> &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+

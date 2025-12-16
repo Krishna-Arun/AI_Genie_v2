@@ -1,0 +1,19 @@
+{
+  "name": "AI Genie",
+  "short_name": "AI Genie",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#e8f4ff",
+  "theme_color": "#3a7dff",
+  "icons": [
+    {
+      "src": "/static/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
+

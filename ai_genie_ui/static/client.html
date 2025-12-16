@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie — Client</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>Client Site</h1>
+          <p>Keep this tab pinned for client runs and logs.</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a href="/server">Server</a>
+        <a class="active" href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card client-panel">
+        <div class="panel-heading">
+          <h2>Client Workspace</h2>
+          <p>Keep the client active, submit Hello World jobs, and watch the output.</p>
+        </div>
+        <div class="panel-actions">
+          <button id="client-toggle" class="pill">Activate</button>
+          <a href="/logs/client" target="_blank" class="log-link">Open client log feed ↗</a>
+        </div>
+        <form id="run-form">
+          <div class="mode-select">
+            <label>
+              <input type="radio" name="mode" value="docker" />
+              Docker Container
+            </label>
+            <label>
+              <input type="radio" name="mode" value="python" checked />
+              Python Snippet
+            </label>
+          </div>
+          <div class="input-group">
+            <label for="docker-ref">Docker image (ex: hello-world)</label>
+            <input
+              type="text"
+              id="docker-ref"
+              name="docker_reference"
+              placeholder="hello-world"
+            />
+            <small>The container needs to be available locally or on Docker Hub.</small>
+          </div>
+          <div class="input-group">
+            <label for="python-code">Python snippet</label>
+            <textarea
+              id="python-code"
+              name="python_code"
+              rows="6"
+              placeholder="print('Hello World from Python!')"
+            ></textarea>
+            <small>Code runs with python3 inside this environment.</small>
+          </div>
+          <div class="actions">
+            <button type="submit" class="primary">Submit Hello World Test</button>
+            <span id="run-result" class="status"></span>
+          </div>
+        </form>
+        <pre id="client-log-box">Client log will appear here after submissions.</pre>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Client site &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
+
+
