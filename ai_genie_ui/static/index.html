@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI Genie</title>
+    <title>AI Genie — Control Plane</title>
     <meta name="theme-color" content="#3a7dff" />
     <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/static/manifest.json" />
@@ -19,12 +19,34 @@
         </div>
       </div>
       <nav class="top-nav">
+        <a href="/jobs">Jobs</a>
+        <a href="/workers">Workers</a>
         <a href="/server">Server</a>
         <a href="/client">Client</a>
       </nav>
     </header>
 
     <main>
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Batch AI Jobs</h2>
+          <p>Submit and monitor chunked, stateless jobs. Inspect per-chunk retries and output verification.</p>
+        </div>
+        <div class="panel-actions">
+          <a class="primary-link" href="/jobs">Open Jobs Dashboard</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Workers</h2>
+          <p>Inspect workers and labels (edge / on-prem / cloud) for demo observability.</p>
+        </div>
+        <div class="panel-actions">
+          <a class="primary-link" href="/workers">Open Workers View</a>
+        </div>
+      </section>
+
       <section class="card">
         <div class="panel-heading">
           <h2>Server Site</h2>

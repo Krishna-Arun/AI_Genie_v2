@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie — Jobs</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>Jobs</h1>
+          <p>Batch jobs split into stateless chunks. Progress, retries, verification.</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a class="active" href="/jobs">Jobs</a>
+        <a href="/workers">Workers</a>
+        <a href="/server">Server</a>
+        <a href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Jobs</h2>
+          <p>Read-only view derived from BOINC scheduler state (workunit/result). Click a Job ID for chunk detail.</p>
+        </div>
+        <div id="jobs-empty" class="empty hidden">No jobs found in the current view window.</div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Job ID</th>
+                <th>Status</th>
+                <th>Progress</th>
+                <th>Chunks</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody id="jobs-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Jobs dashboard &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/control_plane.js"></script>
+  </body>
+</html>
+
+

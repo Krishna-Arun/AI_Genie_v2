@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie — Job Detail</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>Job Detail</h1>
+          <p class="mono" id="job-id">—</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a href="/jobs">Jobs</a>
+        <a href="/workers">Workers</a>
+        <a href="/server">Server</a>
+        <a href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="job-missing" class="card hidden">
+        <div class="panel-heading">
+          <h2>Missing job_id</h2>
+          <p>Open this page as <span class="mono">/job?job_id=&lt;id&gt;</span>.</p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Job Metadata</h2>
+          <p>Two-column metadata grid (derived from workunit XML metadata; no writes).</p>
+        </div>
+        <div id="job-meta" class="kv-grid"></div>
+      </section>
+
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Chunks</h2>
+          <p>Chunk-level status derived from result server_state/outcome/validate_state.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Chunk ID</th>
+                <th>Status</th>
+                <th>Retries</th>
+                <th>Failure reason</th>
+                <th>Verification</th>
+              </tr>
+            </thead>
+            <tbody id="chunks-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Job detail &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/control_plane.js"></script>
+  </body>
+</html>
+
+

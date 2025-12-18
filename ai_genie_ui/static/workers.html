@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Genie — Workers</title>
+    <meta name="theme-color" content="#3a7dff" />
+    <link rel="icon" href="/static/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/static/manifest.json" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <div class="spark"></div>
+        <div>
+          <h1>Workers</h1>
+          <p>Registered workers and labels (edge / on-prem / cloud).</p>
+        </div>
+      </div>
+      <nav class="top-nav">
+        <a href="/">Home</a>
+        <a href="/jobs">Jobs</a>
+        <a class="active" href="/workers">Workers</a>
+        <a href="/server">Server</a>
+        <a href="/client">Client</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="panel-heading">
+          <h2>Workers</h2>
+          <p>Read-only view derived from BOINC host table (+ active inference from in-progress results).</p>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Worker ID</th>
+                <th>Label</th>
+                <th>State</th>
+                <th>Last seen</th>
+              </tr>
+            </thead>
+            <tbody id="workers-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>AI Genie &middot; Workers view &middot; Localhost only</p>
+    </footer>
+
+    <script src="/static/control_plane.js"></script>
+  </body>
+</html>
+
+
