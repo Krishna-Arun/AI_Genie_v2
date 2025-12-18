@@ -17,6 +17,9 @@ import threading
 import time
 import tempfile
 import errno
+import io
+import contextlib
+import traceback
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -40,6 +43,12 @@ STATE = {
 
 LOGS: Dict[str, List[str]] = {"server": [], "client": []}
 STATE_LOCK = threading.Lock()
+
+# A persistent Python execution context so users can "actually run Python code"
+# across multiple submissions (variables/imports persist until restart).
+PY_SESSION_LOCK = threading.Lock()
+PY_SESSION_GLOBALS: Dict[str, object] = {"__name__": "__main__"}
+PY_OUTPUT_CHAR_LIMIT = 20000
 
 
 def append_log(target: str, message: str) -> None:
@@ -284,36 +293,28 @@ def run_docker_test(image: str) -> Tuple[str, bool]:
 
 
 def run_python_test(code: str) -> Tuple[str, bool]:
-    append_log("server", "Executing provided Python snippet.")
-    fd, path = tempfile.mkstemp(suffix=".py", text=True)
+    append_log("server", "Executing provided Python snippet (persistent session).")
+    output = io.StringIO()
+    ok = True
     try:
-        with os.fdopen(fd, "w") as handle:
-            handle.write(code)
-        proc = subprocess.run(
-            ["python3", path], capture_output=True, text=True, timeout=60, check=False
-        )
-    except subprocess.TimeoutExpired:
-        msg = "Python script timed out after 60s."
-        append_log("server", msg)
-        return msg, False
-    finally:
-        try:
-            os.remove(path)
-        except OSError:
-            pass
+        compiled = compile(code, "<ai-genie-python>", "exec")
+        with PY_SESSION_LOCK:
+            with contextlib.redirect_stdout(output), contextlib.redirect_stderr(output):
+                exec(compiled, PY_SESSION_GLOBALS, PY_SESSION_GLOBALS)
+    except Exception:
+        ok = False
+        output.write(traceback.format_exc())
 
-    stdout = proc.stdout.strip()
-    stderr = proc.stderr.strip()
-    append_log("server", stdout or "(no STDOUT)")
-    if stderr:
-        append_log("server", f"STDERR: {stderr}")
+    text = output.getvalue().rstrip()
+    if not text:
+        text = "OK (no output)."
 
-    if proc.returncode != 0:
-        msg = stderr or f"Python exited with status {proc.returncode}"
-        return msg, False
+    if len(text) > PY_OUTPUT_CHAR_LIMIT:
+        text = text[:PY_OUTPUT_CHAR_LIMIT] + "\n\n... (output truncated) ..."
 
-    msg = stdout or "Python script finished without output."
-    return msg, True
+    # Mirror the result into the server log for easy debugging.
+    append_log("server", text if ok else f"Python error:\n{text}")
+    return text, ok
 
 
 def run_server() -> None:
